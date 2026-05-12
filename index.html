@@ -5,229 +5,440 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Passion Discovery Studio — Montréal-Nord</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    /* ── RESET & BASE ───────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --dark: #0f1923;
-      --teal: #028090;
-      --mint: #02C39A;
-      --light: #f4f8f8;
-      --white: #ffffff;
-      --text: #1a2b2b;
-      --muted: #5a7070;
+      --black:  #000000;
+      --dark:   #080808;
+      --card:   #0d0d0d;
+      --border: #1a1a1a;
+      --teal:   #00c9b1;
+      --teal2:  #007a6e;
+      --white:  #ffffff;
+      --grey:   #888888;
+      --light:  #cccccc;
+      --glow:   0 0 24px rgba(0,201,177,0.35);
+      --glow-sm:0 0 12px rgba(0,201,177,0.2);
     }
-
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.7;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
 
-    /* CONTACT BAR */
+    /* ── CONTACT BAR ────────────────────────────────── */
     .contact-bar {
-      background: #0a1118;
-      padding: 0.4rem 2rem;
+      background: #050505;
+      border-bottom: 1px solid var(--border);
+      padding: 0.45rem 2rem;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 1.5rem;
-      font-size: 0.8rem;
+      gap: 2rem;
+      font-size: 0.75rem;
     }
     .contact-bar a {
-      color: #8ab8b8;
-      text-decoration: none;
+      color: var(--grey);
       transition: color 0.2s;
-    }
-    .contact-bar a:hover { color: var(--mint); }
-
-    /* NAV */
-    nav {
-      background: var(--dark);
-      padding: 1rem 2rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 0.4rem;
+    }
+    .contact-bar a:hover { color: var(--teal); }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .nav-wrap {
       position: sticky;
       top: 0;
-      z-index: 100;
-    }
-    nav .logo {
-      color: var(--white);
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-    }
-    nav .logo span { color: var(--mint); }
-    nav .nav-links { display: flex; align-items: center; gap: 0; }
-    nav a {
-      color: #a0b8b8;
-      text-decoration: none;
-      font-size: 0.9rem;
-      margin-left: 1.5rem;
-      transition: color 0.2s;
-    }
-    nav a:hover { color: var(--mint); }
-    nav .nav-contact {
-      margin-left: 1.5rem;
-      background: var(--mint);
-      color: var(--dark) !important;
-      font-weight: 700;
-      padding: 0.4rem 1rem;
-      border-radius: 5px;
-      font-size: 0.85rem;
-    }
-    nav .nav-contact:hover { opacity: 0.85; }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      color: var(--white);
-      padding: 7rem 2rem 6rem;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.25);
-      z-index: 0;
-    }
-    .hero > * { position: relative; z-index: 1; }
-    .hero .badge-row {
+      z-index: 200;
       display: flex;
       justify-content: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
     }
-    .badge {
-      padding: 0.25rem 0.8rem;
+    nav {
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid #222;
       border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      padding: 0.6rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 860px;
+      gap: 1rem;
     }
-    .badge-teal { background: var(--teal); color: white; }
-    .badge-mint { background: var(--mint); color: var(--dark); }
-    .badge-muted { background: rgba(255,255,255,0.1); color: #a0c8c8; }
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-    }
-    .hero h1 span { color: var(--mint); }
-    .hero .tagline {
-      font-size: 1.2rem;
-      color: #8ab8b8;
-      max-width: 600px;
-      margin: 0 auto 2.5rem;
-    }
-    .hero-meta { font-size: 0.9rem; color: #5a8080; margin-top: 2.5rem; }
-
-    .btn {
-      display: inline-block;
-      background: var(--mint);
-      color: var(--dark);
+    .nav-logo {
+      font-size: 0.85rem;
       font-weight: 700;
-      padding: 0.85rem 2rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.95rem;
-      margin: 0.4rem;
-      transition: opacity 0.2s;
+      color: var(--white);
+      white-space: nowrap;
+      letter-spacing: 0.04em;
     }
-    .btn:hover { opacity: 0.85; }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid #3a6060;
-      color: #a0c8c8;
+    .nav-logo span { color: var(--teal); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
     }
-    .btn-outline:hover { border-color: var(--mint); color: var(--mint); }
-
-    /* SECTIONS */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 900px; margin: 0 auto; }
-
-    .section-label {
-      font-size: 0.75rem;
+    .nav-links a {
+      color: var(--grey);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+    .nav-cta {
+      background: var(--teal);
+      color: var(--black) !important;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: box-shadow 0.2s, opacity 0.2s !important;
+    }
+    .nav-cta:hover { box-shadow: var(--glow); opacity: 0.9 !important; background: var(--teal) !important; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.97);
+      z-index: 300;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--grey);
+    }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* grid overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,201,177,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,201,177,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    /* diagonal accent line */
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      top: 62%;
+      left: -50%;
+      transform: rotate(-8deg);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 9vw, 8rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .hero h1 .line-teal { color: var(--teal); }
+    .hero h1 .line-outline {
+      -webkit-text-stroke: 2px rgba(255,255,255,0.25);
+      color: transparent;
+    }
+    .hero-sub {
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      color: var(--grey);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      position: relative;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border-radius: 999px;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .btn-primary:hover { box-shadow: var(--glow); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--light);
+      font-size: 0.9rem;
+      padding: 0.83rem 2rem;
+      border-radius: 999px;
+      border: 1px solid #333;
+      transition: border-color 0.25s, color 0.25s, transform 0.25s;
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: #333;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--teal), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── TICKER ───────────────────────────────────────── */
+    .ticker-wrap {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      padding: 0.85rem 0;
+      background: var(--dark);
+    }
+    .ticker {
+      display: flex;
+      gap: 4rem;
+      animation: ticker 25s linear infinite;
+      width: max-content;
+    }
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      white-space: nowrap;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+    .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTION BASE ─────────────────────────────────── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.25rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--teal);
     }
     h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
       margin-bottom: 1.25rem;
-      line-height: 1.2;
     }
-    p { color: var(--muted); margin-bottom: 1rem; }
+    .text-muted { color: var(--grey); }
 
-    /* PHOTO BANNER */
-    .photo-banner {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      display: block;
+    /* ── REVEAL ANIMATION ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
 
-    /* PROBLEM */
-    .problem { background: var(--light); }
-    .problem-grid {
+    /* ── PROBLEM ──────────────────────────────────────── */
+    .problem { background: var(--dark); }
+    .problem-intro {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
-      margin-top: 2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 3rem;
     }
-    .problem-card {
-      background: white;
-      border-radius: 10px;
-      padding: 1.5rem;
-      border-left: 4px solid var(--teal);
+    .problem-text p { color: var(--grey); font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
     }
-    .problem-card .stat {
-      font-size: 2rem;
+    .stat-cell {
+      background: var(--card);
+      padding: 1.75rem;
+      transition: background 0.3s;
+    }
+    .stat-cell:hover { background: #111; }
+    .stat-num {
+      font-size: 2.5rem;
       font-weight: 800;
       color: var(--teal);
       line-height: 1;
       margin-bottom: 0.4rem;
+      font-variant-numeric: tabular-nums;
     }
-    .problem-card p { font-size: 0.9rem; margin: 0; }
+    .stat-cell p { font-size: 0.8rem; color: var(--grey); margin: 0; }
+    .photo-banner {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 16px;
+      filter: brightness(0.6) saturate(0.8);
+      margin-top: 2rem;
+    }
 
-    /* COMPONENTS */
-    .components { background: var(--white); }
-    .component-list { margin-top: 2rem; display: grid; gap: 1.25rem; }
+    /* ── SOLUTION ─────────────────────────────────────── */
+    .solution { background: var(--black); }
+    .component-grid { display: grid; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-top: 2.5rem; }
     .component-item {
+      background: var(--card);
+      padding: 1.75rem 2rem;
       display: grid;
-      grid-template-columns: 56px 1fr;
-      gap: 1.25rem;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
       align-items: start;
-      background: var(--light);
-      border-radius: 10px;
-      padding: 1.5rem;
+      transition: background 0.3s;
+      position: relative;
     }
-    .component-icon {
-      width: 56px;
-      height: 56px;
-      background: var(--dark);
+    .component-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--teal);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .component-item:hover { background: #101010; }
+    .component-item:hover::before { opacity: 1; }
+    .component-num {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--teal);
+      letter-spacing: 0.1em;
+      padding-top: 0.25rem;
+      min-width: 24px;
+    }
+    .component-icon-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .c-icon {
+      font-size: 1.5rem;
+      width: 48px;
+      height: 48px;
+      background: #111;
+      border: 1px solid #222;
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
+      flex-shrink: 0;
     }
-    .component-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--text); }
-    .component-item p { font-size: 0.9rem; margin: 0; }
-
-    /* PHOTO GRID */
+    .component-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--white);
+    }
+    .component-content p { font-size: 0.875rem; color: var(--grey); margin: 0; }
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -236,121 +447,252 @@
     }
     .photo-grid img {
       width: 100%;
-      height: 180px;
+      height: 200px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 12px;
+      filter: brightness(0.55) saturate(0.7);
+      transition: filter 0.4s, transform 0.4s;
     }
+    .photo-grid img:hover { filter: brightness(0.8) saturate(1); transform: scale(1.02); }
 
-    /* ROADMAP */
-    .roadmap { background: var(--light); }
-    .phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
-    .phase {
-      background: white;
-      border-radius: 10px;
-      padding: 1.5rem;
-      border-top: 4px solid var(--teal);
+    /* ── ROADMAP ──────────────────────────────────────── */
+    .roadmap { background: var(--dark); }
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
     }
-    .phase.active { border-top-color: var(--mint); }
-    .phase h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+    .phase {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .phase:hover { border-color: #333; }
+    .phase.active {
+      border-color: var(--teal2);
+      box-shadow: 0 0 30px rgba(0,201,177,0.08);
+    }
+    .phase-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .phase h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1.25rem; color: var(--white); }
     .phase ul { list-style: none; }
     .phase ul li {
-      font-size: 0.875rem;
-      color: var(--muted);
+      font-size: 0.82rem;
+      color: var(--grey);
       padding: 0.3rem 0;
       display: flex;
-      gap: 0.5rem;
+      gap: 0.6rem;
       align-items: flex-start;
+      border-bottom: 1px solid #111;
     }
-    .phase ul li .check { color: var(--mint); font-weight: 700; flex-shrink: 0; }
-    .phase ul li .circle { color: #ccc; flex-shrink: 0; }
+    .phase ul li:last-child { border-bottom: none; }
+    .check { color: var(--teal); font-weight: 700; flex-shrink: 0; }
+    .circle { color: #333; flex-shrink: 0; }
 
-    /* STORY */
-    .story {
-      position: relative;
-      color: var(--white);
-      overflow: hidden;
-    }
-    .story-bg {
+    /* ── STORY ────────────────────────────────────────── */
+    .story { background: var(--black); position: relative; overflow: hidden; }
+    .story::before {
+      content: '';
       position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1600&q=80');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.15);
-      z-index: 0;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0,201,177,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .story > .container { position: relative; z-index: 1; }
-    .story h2 { color: var(--white); }
-    .story p { color: #8ab8b8; }
-    .story blockquote {
-      border-left: 3px solid var(--mint);
-      padding: 1rem 1.5rem;
-      margin: 2rem 0 0;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: #c0d8d8;
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
-
-    /* DOCS */
-    .docs { background: var(--white); }
-    .github-explainer {
-      background: var(--light);
-      border-radius: 10px;
+    .story-text p { color: var(--grey); font-size: 0.95rem; margin-bottom: 1rem; }
+    .story-text a { color: var(--teal); }
+    .story-quote {
+      border-left: 2px solid var(--teal);
       padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid var(--teal);
+      margin-top: 2rem;
+      background: rgba(0,201,177,0.04);
+      border-radius: 0 12px 12px 0;
     }
-    .github-explainer p {
-      font-size: 0.875rem;
+    .story-quote p {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--light);
       margin: 0;
-      color: var(--muted);
     }
-    .github-explainer strong { color: var(--text); }
-    .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-    .doc-card {
-      border: 1.5px solid #e0eaea;
-      border-radius: 10px;
+    .story-img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 20px;
+      filter: brightness(0.5) saturate(0.6);
+      border: 1px solid #1a1a1a;
+    }
+    .book-card {
+      margin-top: 2rem;
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
       padding: 1.25rem;
-      text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color 0.3s;
     }
-    .doc-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(2,128,144,0.1); }
-    .doc-card .doc-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .doc-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .doc-card p { font-size: 0.8rem; margin: 0; }
+    .book-card:hover { border-color: var(--teal); box-shadow: var(--glow-sm); }
+    .book-card .book-icon { font-size: 2rem; flex-shrink: 0; }
+    .book-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .book-card p { font-size: 0.78rem; color: var(--grey); margin: 0; }
+    .book-card .book-link { font-size: 0.75rem; color: var(--teal); margin-top: 0.25rem; display: block; }
 
-    /* CTA */
-    .cta { background: var(--teal); color: white; text-align: center; }
-    .cta h2 { color: white; }
-    .cta p { color: rgba(255,255,255,0.8); max-width: 540px; margin: 0 auto 2rem; }
-
-    /* FOOTER */
-    footer {
-      background: var(--dark);
-      color: #5a8080;
-      padding: 3rem 2rem 2rem;
-      font-size: 0.875rem;
+    /* ── GITHUB EXPLAINER ─────────────────────────────── */
+    .github-box {
+      background: var(--card);
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: start;
     }
-    .footer-grid {
-      max-width: 900px;
-      margin: 0 auto;
+    .github-box .gh-icon { font-size: 1.5rem; }
+    .github-box h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--white); }
+    .github-box p { font-size: 0.82rem; color: var(--grey); margin: 0; }
+
+    /* ── DOCS ─────────────────────────────────────────── */
+    .docs { background: var(--dark); }
+    .doc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
+      gap: 1rem;
+      margin-top: 0;
     }
-    .footer-col h4 { color: #a0c8c8; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
-    .footer-col p { margin: 0; line-height: 1.9; }
-    .footer-col a { color: var(--mint); text-decoration: none; }
-    .footer-col a:hover { text-decoration: underline; }
-    .footer-bottom {
-      max-width: 900px;
-      margin: 0 auto;
-      padding-top: 1.5rem;
-      border-top: 1px solid #1a3535;
+    .doc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      color: var(--white);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .doc-card:hover {
+      border-color: var(--teal);
+      box-shadow: var(--glow-sm);
+      transform: translateY(-4px);
+    }
+    .doc-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .doc-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .doc-card p { font-size: 0.78rem; color: var(--grey); margin: 0; }
+
+    /* ── CTA ──────────────────────────────────────────── */
+    .cta-section {
+      background: var(--black);
+      padding: 6rem 2rem;
       text-align: center;
-      font-size: 0.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,201,177,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,201,177,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .cta-section h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 1rem; position: relative; }
+    .cta-section p { color: var(--grey); max-width: 480px; margin: 0 auto 2.5rem; position: relative; font-size: 0.95rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 3.5rem 2rem 2rem;
+    }
+    .footer-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand .logo-text {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .footer-brand .logo-text span { color: var(--teal); }
+    .footer-brand p { font-size: 0.82rem; color: var(--grey); max-width: 240px; }
+    .footer-col h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a { font-size: 0.85rem; color: var(--grey); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--teal); }
+    .footer-bottom {
+      max-width: 960px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: #333;
+    }
+    .footer-bottom a { color: #444; transition: color 0.2s; }
+    .footer-bottom a:hover { color: var(--teal); }
+
+    /* ── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .problem-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-grid img:last-child { display: none; }
+      .phases { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .story-img { height: 260px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .contact-bar { justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) {
+      section { padding: 4rem 1.25rem; }
+      .hero { padding: 5rem 1.25rem 4rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .photo-grid { grid-template-columns: 1fr; }
+      .photo-grid img { display: block !important; height: 180px; }
+      .doc-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -359,122 +701,173 @@
 <!-- CONTACT BAR -->
 <div class="contact-bar">
   <a href="mailto:urbani.luca639@gmail.com">✉ urbani.luca639@gmail.com</a>
-  <a href="https://github.com/Fokerfeit" target="_blank">⌥ github.com/Fokerfeit</a>
+  <a href="https://github.com/Fokerfeit" target="_blank">◈ github.com/Fokerfeit</a>
   <a href="https://www.amazon.ca/dp/B0F73VCSG3" target="_blank">📖 Somewhere in the Milky Way</a>
 </div>
 
 <!-- NAV -->
-<nav>
-  <div class="logo">Passion Discovery <span>Studio</span></div>
-  <div class="nav-links">
-    <a href="#problem">Problem</a>
-    <a href="#solution">Solution</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#docs">Docs</a>
-    <a href="mailto:urbani.luca639@gmail.com" class="nav-contact">Contact</a>
-  </div>
-</nav>
+<div class="nav-wrap">
+  <nav>
+    <div class="nav-logo">Passion Discovery <span>Studio</span></div>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#story">Story</a>
+      <a href="#docs">Docs</a>
+      <a href="mailto:urbani.luca639@gmail.com" class="nav-cta">Contact Luca</a>
+    </div>
+    <div class="hamburger" id="menuBtn">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="close-btn" id="closeMenu">✕</span>
+  <a href="#problem" onclick="closeMobileMenu()">Problem</a>
+  <a href="#solution" onclick="closeMobileMenu()">Solution</a>
+  <a href="#roadmap" onclick="closeMobileMenu()">Roadmap</a>
+  <a href="#story" onclick="closeMobileMenu()">Story</a>
+  <a href="#docs" onclick="closeMobileMenu()">Docs</a>
+  <a href="mailto:urbani.luca639@gmail.com" style="color:var(--teal)">Contact Luca</a>
+</div>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="badge-row">
-    <span class="badge badge-mint">Phase 1 — Montréal-Nord</span>
-    <span class="badge badge-teal">Pilot Design</span>
-    <span class="badge badge-muted">MIT License</span>
+  <p class="hero-eyebrow reveal">Phase 1 · Montréal-Nord · Pilot Design</p>
+  <h1 class="reveal reveal-delay-1">
+    Every child.<br>
+    <span class="line-teal">Same destination.</span><br>
+    <span class="line-outline">Different path.</span>
+  </h1>
+  <p class="hero-sub reveal reveal-delay-2">
+    Personalized, passion-driven elementary education — same Québec curriculum, paths built around who children actually are.
+  </p>
+  <div class="hero-actions reveal reveal-delay-3">
+    <a href="#docs" class="btn-primary">View Documents</a>
+    <a href="mailto:urbani.luca639@gmail.com" class="btn-ghost">Contact Luca</a>
   </div>
-  <h1>Every child. Same destination.<br><span>Different path.</span></h1>
-  <p class="tagline">Personalized, passion-driven elementary education that keeps every student on track with the Québec Education Program.</p>
-  <div style="margin-top: 2rem;">
-    <a href="#docs" class="btn">View Documents</a>
-    <a href="mailto:urbani.luca639@gmail.com" class="btn btn-outline">Contact Luca</a>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
   </div>
-  <p class="hero-meta">Luca Urbani · Montréal-Nord, Québec · Seeking school board &amp; funding partners</p>
 </div>
 
-<!-- PHOTO BANNER 1 -->
-<img class="photo-banner"
-  src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1600&q=80"
-  alt="Children learning together in a classroom"
-  loading="lazy" />
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ticker-dot"></span>Phase 1 — Montréal-Nord</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Passion Discovery Studio</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Québec Education Program</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Personalized Learning Paths</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>AI-Driven Optimization</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Seeking School Board Partnership</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Open Design · MIT License</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ticker-dot"></span>Phase 1 — Montréal-Nord</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Passion Discovery Studio</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Québec Education Program</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Personalized Learning Paths</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>AI-Driven Optimization</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Seeking School Board Partnership</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Open Design · MIT License</div>
+  </div>
+</div>
 
 <!-- PROBLEM -->
 <section class="problem" id="problem">
   <div class="container">
-    <p class="section-label">The Problem</p>
-    <h2>One path doesn't fit every child.</h2>
-    <p>Traditional elementary education applies a single approach to all students. In high-need neighbourhoods like Montréal-Nord, this creates a crisis of disengagement before children even reach secondary school.</p>
-    <p>High-energy children get labelled as behaviour problems. Cerebral children get bored and switch off. Nobody asks what actually excites them.</p>
-    <div class="problem-grid">
-      <div class="problem-card">
-        <div class="stat">5–7</div>
-        <p>Age range when early disengagement begins</p>
+    <p class="section-label reveal">The Problem</p>
+    <div class="problem-intro">
+      <div class="problem-text reveal reveal-delay-1">
+        <h2>One path<br>doesn't fit<br>every child.</h2>
+        <p>Traditional elementary education applies a single approach to all students. In high-need neighbourhoods like Montréal-Nord, this creates a crisis of disengagement before children reach secondary school.</p>
+        <p>High-energy children get labelled as behaviour problems. Cerebral children get bored and switch off. Nobody asks what actually excites them.</p>
       </div>
-      <div class="problem-card">
-        <div class="stat">↑</div>
-        <p>Higher secondary dropout rates in underserved neighbourhoods</p>
-      </div>
-      <div class="problem-card">
-        <div class="stat">0</div>
-        <p>Times children are asked what actually excites them</p>
-      </div>
-      <div class="problem-card">
-        <div class="stat">∞</div>
-        <p>Human potential wasted when passion goes undiscovered</p>
+      <div class="stat-grid reveal reveal-delay-2">
+        <div class="stat-cell">
+          <div class="stat-num" data-target="57">5–7</div>
+          <p>Age when disengagement begins</p>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">↑</div>
+          <p>Dropout rates in underserved areas</p>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">0</div>
+          <p>Times children are asked what excites them</p>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-num">∞</div>
+          <p>Potential wasted when passion goes undiscovered</p>
+        </div>
       </div>
     </div>
+    <img class="photo-banner reveal"
+      src="https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1600&q=80"
+      alt="Children learning together" loading="lazy" />
   </div>
 </section>
 
 <!-- SOLUTION -->
-<section class="components" id="solution">
+<section class="solution" id="solution">
   <div class="container">
-    <p class="section-label">The Solution</p>
-    <h2>Five integrated components.<br>One coherent system.</h2>
-    <p>Every component maps to the same QEP curriculum endpoints — students reach the same destination through paths built around who they actually are.</p>
-    <div class="component-list">
+    <p class="section-label reveal">The Solution</p>
+    <h2 class="reveal reveal-delay-1">Five components.<br>One coherent system.</h2>
+    <p class="text-muted reveal reveal-delay-2">Every component maps to the same QEP curriculum endpoints — students reach the same destination through paths built around who they actually are.</p>
+    <div class="component-grid reveal reveal-delay-2">
       <div class="component-item">
-        <div class="component-icon">🔬</div>
-        <div>
-          <h3>1. Passion Discovery Studio</h3>
-          <p>7 hands-on stations (metal &amp; tools, jewelry, microscope, water physics, construction, nature, art). Summer sessions with 15–20 min per child. Open year-round, volunteer-run.</p>
+        <div class="component-icon-wrap">
+          <div class="c-icon">🔬</div>
+        </div>
+        <div class="component-content">
+          <h3>1 — Passion Discovery Studio</h3>
+          <p>7 hands-on stations: metal &amp; tools, jewelry, microscope, water physics, construction, nature, art. Summer sessions, 15–20 min per child, volunteer-run year-round.</p>
         </div>
       </div>
       <div class="component-item">
-        <div class="component-icon">🗺️</div>
-        <div>
-          <h3>2. Personalized Learning Paths</h3>
-          <p>7–8 simultaneous paths per classroom. High-energy students get more movement and outdoor time. Cerebral students get library, Studio, and peer discussion. Same curriculum endpoints for all.</p>
+        <div class="component-icon-wrap">
+          <div class="c-icon">🗺️</div>
+        </div>
+        <div class="component-content">
+          <h3>2 — Personalized Learning Paths</h3>
+          <p>7–8 simultaneous paths per classroom. High-energy students get more movement. Cerebral students get library, Studio, peer discussion. Same curriculum endpoints for all.</p>
         </div>
       </div>
       <div class="component-item">
-        <div class="component-icon">📱</div>
-        <div>
-          <h3>3. Tablet Program</h3>
-          <p>Locked-down educational tablets — one per student for all 5 primary years. No social media, no open internet. Game-based, visual curriculum delivery inspired by proven engagement models.</p>
+        <div class="component-icon-wrap">
+          <div class="c-icon">📱</div>
+        </div>
+        <div class="component-content">
+          <h3>3 — Tablet Program</h3>
+          <p>Locked-down educational tablets, one per student for all 5 primary years. No social media, no open internet. Game-based, visual curriculum delivery.</p>
         </div>
       </div>
       <div class="component-item">
-        <div class="component-icon">👩‍🏫</div>
-        <div>
-          <h3>4. Evolved Teacher Role</h3>
+        <div class="component-icon-wrap">
+          <div class="c-icon">👩‍🏫</div>
+        </div>
+        <div class="component-content">
+          <h3>4 — Evolved Teacher Role</h3>
           <p>60% adaptive coaching and differentiated support. 40% direct instruction. Teachers supervise outdoor breaks while trained volunteers staff the Studio.</p>
         </div>
       </div>
       <div class="component-item">
-        <div class="component-icon">🤖</div>
-        <div>
-          <h3>5. AI-Driven Optimization</h3>
-          <p>Simulations using Ministère de l'Éducation du Québec data. Pre-launch scenario modelling and path optimization. Evidence-based refinement throughout the pilot.</p>
+        <div class="component-icon-wrap">
+          <div class="c-icon">🤖</div>
+        </div>
+        <div class="component-content">
+          <h3>5 — AI-Driven Optimization</h3>
+          <p>Simulations using Ministère de l'Éducation du Québec data. Pre-launch scenario modelling, path optimization, evidence-based refinement throughout the pilot.</p>
         </div>
       </div>
     </div>
-
-    <!-- PHOTO GRID -->
-    <div class="photo-grid">
-      <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?auto=format&fit=crop&w=600&q=80" alt="Child using a microscope" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Hands-on building activity" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1555009393-f20bdb245c4d?auto=format&fit=crop&w=600&q=80" alt="Children outdoor learning" loading="lazy" />
+    <div class="photo-grid reveal reveal-delay-3">
+      <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?auto=format&fit=crop&w=600&q=80" alt="Child at microscope" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Hands-on building" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1555009393-f20bdb245c4d?auto=format&fit=crop&w=600&q=80" alt="Outdoor learning" loading="lazy" />
     </div>
   </div>
 </section>
@@ -482,11 +875,12 @@
 <!-- ROADMAP -->
 <section class="roadmap" id="roadmap">
   <div class="container">
-    <p class="section-label">Roadmap</p>
-    <h2>Start local. Prove it. Scale province-wide.</h2>
+    <p class="section-label reveal">Roadmap</p>
+    <h2 class="reveal reveal-delay-1">Start local.<br>Prove it. Scale.</h2>
     <div class="phases">
-      <div class="phase active">
-        <h3>Phase 1 — Pilot <span style="color:var(--mint)">▶ Now</span></h3>
+      <div class="phase active reveal reveal-delay-1">
+        <div class="phase-label">Current</div>
+        <h3>Phase 1 — Pilot</h3>
         <ul>
           <li><span class="check">✓</span> Program design &amp; documentation</li>
           <li><span class="check">✓</span> Curriculum path framework</li>
@@ -498,7 +892,8 @@
           <li><span class="circle">○</span> Independent evaluation</li>
         </ul>
       </div>
-      <div class="phase">
+      <div class="phase reveal reveal-delay-2">
+        <div class="phase-label">Next</div>
         <h3>Phase 2 — Expansion</h3>
         <ul>
           <li><span class="circle">○</span> 3–5 schools in Montréal</li>
@@ -506,10 +901,11 @@
           <li><span class="circle">○</span> Scale training infrastructure</li>
         </ul>
       </div>
-      <div class="phase">
+      <div class="phase reveal reveal-delay-3">
+        <div class="phase-label">Vision</div>
         <h3>Phase 3 — Province-Wide</h3>
         <ul>
-          <li><span class="circle">○</span> Province-wide rollout</li>
+          <li><span class="circle">○</span> Province-wide Québec rollout</li>
           <li><span class="circle">○</span> Open-source curriculum framework</li>
         </ul>
       </div>
@@ -518,102 +914,140 @@
 </section>
 
 <!-- STORY -->
-<section class="story">
-  <div class="story-bg"></div>
+<section class="story" id="story">
   <div class="container">
-    <p class="section-label" style="color:var(--mint)">Why This Exists</p>
-    <h2>A personal mission, not a theory.</h2>
-    <p>I am Luca Urbani. I never connected with school as a child. I became a mechanic out of necessity when my son was born unexpectedly. I spent years as an RCAF Aviation Technician — disciplined, effective, award-winning. But it was not my passion.</p>
-    <p>At 34, I discovered metal, diamonds, and micrology. Learning became effortless.</p>
-    <p>I built this project so no child in Montréal-Nord has to wait 34 years to find out what drives them. My background in aviation diagnostics and high-stakes performance optimization directly informs the design philosophy: identify the problem precisely, test rigorously, optimize continuously, scale what works.</p>
-    <p>I also wrote about the bigger picture — civilization, money, democracy, and human potential — in my book <a href="https://www.amazon.ca/dp/B0F73VCSG3" target="_blank" style="color:var(--mint)">Somewhere in the Milky Way</a>.</p>
-    <blockquote>"Every child deserves the chance I never had: to discover what truly drives them, and let that fuel their entire education."</blockquote>
+    <div class="story-grid">
+      <div class="story-text reveal">
+        <p class="section-label">Why This Exists</p>
+        <h2>A personal mission,<br>not a theory.</h2>
+        <p>I am Luca Urbani. I never connected with school as a child. I became a mechanic out of necessity when my son was born unexpectedly. I spent years as an RCAF Aviation Technician — disciplined, effective, award-winning. But it was not my passion.</p>
+        <p>At 34, I discovered metal, diamonds, and micrology. Learning became effortless. I built this project so no child in Montréal-Nord has to wait 34 years to find what drives them.</p>
+        <p>My background in aviation diagnostics and performance optimization informs the design philosophy: identify the problem precisely, test rigorously, optimize continuously, scale what works.</p>
+        <div class="story-quote">
+          <p>"Every child deserves the chance I never had: to discover what truly drives them, and let that fuel their entire education."</p>
+        </div>
+        <a href="https://www.amazon.ca/dp/B0F73VCSG3" target="_blank" class="book-card">
+          <div class="book-icon">📖</div>
+          <div>
+            <h4>Somewhere in the Milky Way</h4>
+            <p>The bigger picture — civilization, money, democracy, human potential.</p>
+            <span class="book-link">Available on Amazon Kindle · $4 CAD →</span>
+          </div>
+        </a>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <img class="story-img"
+          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80"
+          alt="Children discovering passions" loading="lazy" />
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- PHOTO BANNER 2 -->
-<img class="photo-banner"
-  src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1600&q=80"
-  alt="Books and learning materials"
-  loading="lazy" />
 
 <!-- DOCS -->
 <section class="docs" id="docs">
   <div class="container">
-    <p class="section-label">Documentation</p>
-    <h2>Full project documents.</h2>
+    <p class="section-label reveal">Documentation</p>
+    <h2 class="reveal reveal-delay-1">Full project documents.</h2>
 
-    <div class="github-explainer">
-      <p><strong>What is GitHub?</strong> GitHub is a free platform used by developers and organizations worldwide to store, share, and collaborate on documents and code. Think of it like Google Drive, but open to the public and designed for transparency. The links below let anyone — school boards, the Ministry, funders, or parents — download the project documents directly. No account required to view or download.</p>
+    <div class="github-box reveal reveal-delay-2">
+      <div class="gh-icon">💻</div>
+      <div>
+        <h4>What is GitHub?</h4>
+        <p>GitHub is a free, public platform used by organizations worldwide to share documents and code transparently. Think of it as Google Drive, but open to everyone. The links below let anyone — school boards, the Ministry, funders, parents — download the documents directly. No account required.</p>
+      </div>
     </div>
 
     <div class="doc-grid">
-      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/grant-proposal.docx">
+      <a class="doc-card reveal reveal-delay-1" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/grant-proposal.docx">
         <div class="doc-icon">📄</div>
         <h3>Grant Proposal</h3>
         <p>Full Phase 1 proposal for school board and funding partners</p>
       </a>
-      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/budget-breakdown.docx">
+      <a class="doc-card reveal reveal-delay-2" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/budget-breakdown.docx">
         <div class="doc-icon">💰</div>
         <h3>Budget Breakdown</h3>
         <p>Detailed line-item budget for the pilot phase</p>
       </a>
-      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/stakeholder-faq.docx">
+      <a class="doc-card reveal reveal-delay-3" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/stakeholder-faq.docx">
         <div class="doc-icon">❓</div>
         <h3>Stakeholder FAQ</h3>
         <p>Answers for parents, teachers, and the Ministry</p>
       </a>
-      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">
-        <div class="doc-icon">💻</div>
+      <a class="doc-card reveal reveal-delay-4" href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">
+        <div class="doc-icon">◈</div>
         <h3>GitHub Repository</h3>
-        <p>Browse all files, history, and contribution guidelines online</p>
+        <p>Browse all files, history, and contribution guidelines</p>
       </a>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta">
+<section class="cta-section">
   <div class="container">
-    <h2>Ready to build this together?</h2>
-    <p>We're seeking a pilot school partnership in Montréal-Nord and Phase 1 funding of $30,000–$40,000 CAD. Open to contributors, educators, and partners.</p>
-    <a href="mailto:urbani.luca639@gmail.com" class="btn" style="background:white; color:var(--teal);">Email Luca Directly</a>
-    <a href="https://github.com/Fokerfeit/passion-discovery-studio/issues" target="_blank" class="btn" style="background:var(--dark); color:white;">Open an Issue on GitHub</a>
+    <h2 class="reveal">Ready to build<br><span style="color:var(--teal)">this together?</span></h2>
+    <p class="reveal reveal-delay-1">Seeking a pilot school in Montréal-Nord and Phase 1 funding of $30–40K CAD. Open to educators, contributors, and partners.</p>
+    <div class="cta-btns reveal reveal-delay-2">
+      <a href="mailto:urbani.luca639@gmail.com" class="btn-primary">Email Luca Directly</a>
+      <a href="https://github.com/Fokerfeit/passion-discovery-studio/issues" target="_blank" class="btn-ghost">Open a GitHub Issue</a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-text">Passion Discovery <span>Studio</span></div>
+      <p>Personalized elementary education for Montréal-Nord — same curriculum, different path.</p>
+    </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <p>
-        Luca Urbani<br>
-        <a href="mailto:urbani.luca639@gmail.com">urbani.luca639@gmail.com</a><br>
-        Montréal-Nord, Québec, Canada
-      </p>
+      <ul>
+        <li><a href="mailto:urbani.luca639@gmail.com">urbani.luca639@gmail.com</a></li>
+        <li><a href="https://github.com/Fokerfeit" target="_blank">@Fokerfeit on GitHub</a></li>
+        <li><a>Montréal-Nord, Québec</a></li>
+      </ul>
     </div>
     <div class="footer-col">
       <h4>Project</h4>
-      <p>
-        <a href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">GitHub Repository</a><br>
-        <a href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/grant-proposal.docx">Grant Proposal</a><br>
-        <a href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/budget-breakdown.docx">Budget Breakdown</a>
-      </p>
-    </div>
-    <div class="footer-col">
-      <h4>Author</h4>
-      <p>
-        <a href="https://github.com/Fokerfeit" target="_blank">@Fokerfeit on GitHub</a><br>
-        <a href="https://www.amazon.ca/dp/B0F73VCSG3" target="_blank">Somewhere in the Milky Way</a><br>
-        MIT License · Open Design
-      </p>
+      <ul>
+        <li><a href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/grant-proposal.docx">Grant Proposal</a></li>
+        <li><a href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/budget-breakdown.docx">Budget Breakdown</a></li>
+        <li><a href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/stakeholder-faq.docx">Stakeholder FAQ</a></li>
+        <li><a href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">GitHub Repository</a></li>
+        <li><a href="https://www.amazon.ca/dp/B0F73VCSG3" target="_blank">Somewhere in the Milky Way</a></li>
+      </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 Luca Urbani · Passion Discovery Studio · Montréal-Nord, Québec
+    <span>© 2026 Luca Urbani · MIT License · Open Design</span>
+    <span><a href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">github.com/Fokerfeit/passion-discovery-studio</a></span>
   </div>
 </footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Trigger hero reveals immediately
+  document.querySelectorAll('.hero .reveal').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 100);
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const closeMenu = document.getElementById('closeMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+  closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  function closeMobileMenu() { mobileMenu.classList.remove('open'); }
+</script>
 
 </body>
 </html>
