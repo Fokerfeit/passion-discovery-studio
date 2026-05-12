@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Passion Discovery Studio — Montréal-Nord</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dark: #0f1923;
+      --teal: #028090;
+      --mint: #02C39A;
+      --light: #f4f8f8;
+      --white: #ffffff;
+      --text: #1a2b2b;
+      --muted: #5a7070;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--dark);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+    }
+    nav .logo span { color: var(--mint); }
+    nav a {
+      color: #a0b8b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-left: 1.5rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--mint); }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      color: var(--white);
+      padding: 6rem 2rem 5rem;
+      text-align: center;
+    }
+    .hero .badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .badge {
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .badge-teal { background: var(--teal); color: white; }
+    .badge-mint { background: var(--mint); color: var(--dark); }
+    .badge-muted { background: #1e3a3a; color: #a0c8c8; }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 span { color: var(--mint); }
+    .hero .tagline {
+      font-size: 1.2rem;
+      color: #8ab8b8;
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-meta {
+      font-size: 0.9rem;
+      color: #5a8080;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--mint);
+      color: var(--dark);
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin: 0.4rem;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #3a6060;
+      color: #a0c8c8;
+    }
+    .btn-outline:hover { border-color: var(--mint); color: var(--mint); }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      line-height: 1.2;
+    }
+    p { color: var(--muted); margin-bottom: 1rem; }
+
+    /* PROBLEM */
+    .problem { background: var(--light); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .problem-card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      border-left: 4px solid var(--teal);
+    }
+    .problem-card .stat {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .problem-card p { font-size: 0.9rem; margin: 0; }
+
+    /* COMPONENTS */
+    .components { background: var(--white); }
+    .component-list { margin-top: 2rem; display: grid; gap: 1.25rem; }
+    .component-item {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      background: var(--light);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .component-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--dark);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .component-item h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+      color: var(--text);
+    }
+    .component-item p { font-size: 0.9rem; margin: 0; }
+
+    /* ROADMAP */
+    .roadmap { background: var(--light); }
+    .phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+    .phase {
+      background: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      border-top: 4px solid var(--teal);
+    }
+    .phase.active { border-top-color: var(--mint); }
+    .phase h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+    .phase ul { list-style: none; }
+    .phase ul li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+    .phase ul li .check { color: var(--mint); font-weight: 700; flex-shrink: 0; }
+    .phase ul li .circle { color: #ccc; flex-shrink: 0; }
+
+    /* STORY */
+    .story { background: var(--dark); color: var(--white); }
+    .story h2 { color: var(--white); }
+    .story p { color: #8ab8b8; }
+    .story blockquote {
+      border-left: 3px solid var(--mint);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0 0;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #c0d8d8;
+    }
+
+    /* DOCS */
+    .docs { background: var(--white); }
+    .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .doc-card {
+      border: 1.5px solid #e0eaea;
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .doc-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(2,128,144,0.1); }
+    .doc-card .doc-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .doc-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .doc-card p { font-size: 0.8rem; margin: 0; }
+
+    /* CTA */
+    .cta { background: var(--teal); color: white; text-align: center; }
+    .cta h2 { color: white; }
+    .cta p { color: rgba(255,255,255,0.8); max-width: 540px; margin: 0 auto 2rem; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: #5a8080;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--mint); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Passion Discovery <span>Studio</span></div>
+  <div>
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#docs">Docs</a>
+    <a href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge-row">
+    <span class="badge badge-mint">Phase 1 — Montréal-Nord</span>
+    <span class="badge badge-teal">Pilot Design</span>
+    <span class="badge badge-muted">MIT License</span>
+  </div>
+  <h1>Every child. Same destination.<br><span>Different path.</span></h1>
+  <p class="tagline">Personalized, passion-driven elementary education that keeps every student on track with the Québec Education Program.</p>
+  <div style="margin-top: 2rem;">
+    <a href="#docs" class="btn">View Documents</a>
+    <a href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank" class="btn btn-outline">GitHub Repository</a>
+  </div>
+  <p class="hero-meta" style="margin-top: 2.5rem;">Luca Urbani · Montréal-Nord, Québec · Seeking school board &amp; funding partners</p>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="container">
+    <p class="section-label">The Problem</p>
+    <h2>One path doesn't fit every child.</h2>
+    <p>Traditional elementary education applies a single approach to all students. In high-need neighbourhoods like Montréal-Nord, this creates a crisis of disengagement before children even reach secondary school.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="stat">5–7</div>
+        <p>Age range when early disengagement begins</p>
+      </div>
+      <div class="problem-card">
+        <div class="stat">↑</div>
+        <p>Higher secondary dropout rates in underserved neighbourhoods</p>
+      </div>
+      <div class="problem-card">
+        <div class="stat">0</div>
+        <p>Times children are asked what actually excites them</p>
+      </div>
+      <div class="problem-card">
+        <div class="stat">∞</div>
+        <p>Human potential wasted when passion goes undiscovered</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="components" id="solution">
+  <div class="container">
+    <p class="section-label">The Solution</p>
+    <h2>Five integrated components.<br>One coherent system.</h2>
+    <p>Every component maps to the same QEP curriculum endpoints — students reach the same destination through paths built around who they actually are.</p>
+    <div class="component-list">
+      <div class="component-item">
+        <div class="component-icon">🔬</div>
+        <div>
+          <h3>1. Passion Discovery Studio</h3>
+          <p>7 hands-on stations (metal &amp; tools, jewelry, microscope, water physics, construction, nature, art). Summer sessions with 15–20 min per child. Open year-round, volunteer-run.</p>
+        </div>
+      </div>
+      <div class="component-item">
+        <div class="component-icon">🗺️</div>
+        <div>
+          <h3>2. Personalized Learning Paths</h3>
+          <p>7–8 simultaneous paths per classroom. High-energy students get more movement and outdoor time. Cerebral students get library, Studio, and peer discussion. Same curriculum endpoints for all.</p>
+        </div>
+      </div>
+      <div class="component-item">
+        <div class="component-icon">📱</div>
+        <div>
+          <h3>3. Tablet Program</h3>
+          <p>Locked-down educational tablets — one per student for all 5 primary years. No social media, no open internet. Game-based, visual curriculum delivery inspired by proven engagement models.</p>
+        </div>
+      </div>
+      <div class="component-item">
+        <div class="component-icon">👩‍🏫</div>
+        <div>
+          <h3>4. Evolved Teacher Role</h3>
+          <p>60% adaptive coaching and differentiated support. 40% direct instruction. Teachers supervise outdoor breaks while trained volunteers staff the Studio.</p>
+        </div>
+      </div>
+      <div class="component-item">
+        <div class="component-icon">🤖</div>
+        <div>
+          <h3>5. AI-Driven Optimization</h3>
+          <p>Simulations using Ministère de l'Éducation du Québec data. Pre-launch scenario modelling and path optimization. Evidence-based refinement throughout the pilot.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+  <div class="container">
+    <p class="section-label">Roadmap</p>
+    <h2>Start local. Prove it. Scale province-wide.</h2>
+    <div class="phases">
+      <div class="phase active">
+        <h3>Phase 1 — Pilot <span style="color:var(--mint)">▶ Now</span></h3>
+        <ul>
+          <li><span class="check">✓</span> Program design &amp; documentation</li>
+          <li><span class="check">✓</span> Curriculum path framework</li>
+          <li><span class="circle">○</span> Pilot school partnership</li>
+          <li><span class="circle">○</span> Phase 1 funding ($30–40K CAD)</li>
+          <li><span class="circle">○</span> Volunteer cohort recruited</li>
+          <li><span class="circle">○</span> Summer Discovery Studio launch</li>
+          <li><span class="circle">○</span> Full academic year pilot</li>
+          <li><span class="circle">○</span> Independent evaluation</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <h3>Phase 2 — Expansion</h3>
+        <ul>
+          <li><span class="circle">○</span> 3–5 schools in Montréal</li>
+          <li><span class="circle">○</span> Refine on Phase 1 data</li>
+          <li><span class="circle">○</span> Scale training infrastructure</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <h3>Phase 3 — Province-Wide</h3>
+        <ul>
+          <li><span class="circle">○</span> Province-wide rollout</li>
+          <li><span class="circle">○</span> Open-source curriculum framework</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story">
+  <div class="container">
+    <p class="section-label" style="color:var(--mint)">Why This Exists</p>
+    <h2>A personal mission, not a theory.</h2>
+    <p>I am Luca Urbani. I never connected with school as a child. I became a mechanic out of necessity when my son was born unexpectedly. I spent years as an RCAF Aviation Technician — disciplined, effective, award-winning. But it was not my passion.</p>
+    <p>At 34, I discovered metal, diamonds, and micrology. Learning became effortless.</p>
+    <p>I built this project so no child in Montréal-Nord has to wait 34 years to find out what drives them. My background in aviation diagnostics and high-stakes performance optimization directly informs the design philosophy: identify the problem precisely, test rigorously, optimize continuously, scale what works.</p>
+    <blockquote>"Every child deserves the chance I never had: to discover what truly drives them, and let that fuel their entire education."</blockquote>
+  </div>
+</section>
+
+<!-- DOCS -->
+<section class="docs" id="docs">
+  <div class="container">
+    <p class="section-label">Documentation</p>
+    <h2>Full project documents.</h2>
+    <p>All Phase 1 documentation is publicly available on GitHub.</p>
+    <div class="doc-grid">
+      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/grant-proposal.docx">
+        <div class="doc-icon">📄</div>
+        <h3>Grant Proposal</h3>
+        <p>Full Phase 1 proposal for school board and funding partners</p>
+      </a>
+      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/budget-breakdown.docx">
+        <div class="doc-icon">💰</div>
+        <h3>Budget Breakdown</h3>
+        <p>Detailed line-item budget for the pilot phase</p>
+      </a>
+      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio/raw/main/docs/stakeholder-faq.docx">
+        <div class="doc-icon">❓</div>
+        <h3>Stakeholder FAQ</h3>
+        <p>Answers for parents, teachers, and the Ministry</p>
+      </a>
+      <a class="doc-card" href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">
+        <div class="doc-icon">💻</div>
+        <h3>GitHub Repository</h3>
+        <p>Full source, documentation, and contribution guidelines</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <h2>Ready to build this together?</h2>
+    <p>We're seeking a pilot school partnership in Montréal-Nord and Phase 1 funding of $30,000–$40,000 CAD. Open to contributors, educators, and partners.</p>
+    <a href="https://github.com/Fokerfeit/passion-discovery-studio/issues" target="_blank" class="btn" style="background:white; color:var(--teal);">Open an Issue on GitHub</a>
+    <a href="mailto:urbani.luca639@gmail.com" class="btn" style="background:var(--dark); color:white;">Contact Luca</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Passion Discovery Studio · Montréal-Nord, Québec, Canada · <a href="https://github.com/Fokerfeit/passion-discovery-studio" target="_blank">github.com/Fokerfeit/passion-discovery-studio</a></p>
+  <p style="margin-top:0.5rem;">© 2026 Luca Urbani · MIT License</p>
+</footer>
+
+</body>
+</html>
