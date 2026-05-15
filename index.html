@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Passion Discovery Studio — Montréal-Nord</title>
+  <title>Studio de Découverte des Passions — Montréal-Nord</title>
+  <link rel="icon" type="image/png" href="logo.png" />
   <style>
     /* ── RESET & BASE ───────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -81,6 +82,16 @@
       color: var(--white);
       white-space: nowrap;
       letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .nav-logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
     }
     .nav-logo span { color: var(--teal); }
     .nav-links {
@@ -640,6 +651,15 @@
       font-weight: 800;
       margin-bottom: 0.75rem;
       letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .footer-brand .logo-text img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
     }
     .footer-brand .logo-text span { color: var(--teal); }
     .footer-brand p { font-size: 0.82rem; color: var(--grey); max-width: 240px; }
@@ -810,7 +830,7 @@
 <!-- NAV -->
 <div class="nav-wrap">
   <nav>
-    <div class="nav-logo">Studio de Découverte <span>des Passions</span></div>
+    <div class="nav-logo"><img src="logo.png" alt="Logo" />Studio de Découverte <span>des Passions</span></div>
     <div class="nav-links">
       <a href="#problem">Problème</a>
       <a href="#solution">Solution</a>
@@ -1143,7 +1163,7 @@
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="logo-text">Studio de Découverte <span>des Passions</span></div>
+      <div class="logo-text"><img src="logo.png" alt="Logo" />Studio de Découverte <span>des Passions</span></div>
       <p>Éducation primaire personnalisée pour Montréal-Nord — même programme, chemin différent.</p>
     </div>
     <div class="footer-col">
