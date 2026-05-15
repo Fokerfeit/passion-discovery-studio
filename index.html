@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Studio de Découverte des Passions — Montréal-Nord</title>
   <link rel="icon" type="image/png" href="logo.png" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
     /* ── RESET & BASE ───────────────────────────────── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -814,6 +815,167 @@
       .photo-grid img { display: block !important; height: 180px; }
       .doc-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── SIMULATOR ────────────────────────────────────── */
+    .simulator { background: var(--black); }
+    .sim-intro { color: var(--grey); font-size: 0.95rem; max-width: 620px; margin-bottom: 2.5rem; }
+    .sim-layout {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .sim-controls {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .sim-controls h4 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 0.25rem;
+    }
+    .sim-slider-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .sim-slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--light);
+    }
+    .sim-slider-label span {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--teal);
+      min-width: 32px;
+      text-align: right;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: #1e1e1e;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--teal);
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0,201,177,0.4);
+    }
+    .sim-toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--light);
+    }
+    .sim-toggle {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .sim-toggle input { opacity: 0; width: 0; height: 0; }
+    .sim-toggle-track {
+      position: absolute;
+      inset: 0;
+      background: #222;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .sim-toggle input:checked + .sim-toggle-track { background: var(--teal); }
+    .sim-toggle-track::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.3s;
+    }
+    .sim-toggle input:checked + .sim-toggle-track::after { transform: translateX(18px); }
+    .sim-right { display: flex; flex-direction: column; gap: 1.5rem; }
+    .sim-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .sim-stat {
+      background: var(--card);
+      padding: 1.25rem;
+      text-align: center;
+    }
+    .sim-stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      font-variant-numeric: tabular-nums;
+      transition: color 0.3s;
+    }
+    .sim-stat-num.warn { color: #ff6b6b; }
+    .sim-stat p { font-size: 0.7rem; color: var(--grey); margin: 0; line-height: 1.3; }
+    .sim-charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .sim-chart-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+    .sim-chart-box h5 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    .sim-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(0,201,177,0.05);
+      border: 1px solid rgba(0,201,177,0.15);
+      border-radius: 16px;
+      padding: 1.25rem 1.75rem;
+      flex-wrap: wrap;
+    }
+    .sim-cta p { font-size: 0.88rem; color: var(--grey); margin: 0; }
+    .sim-cta p strong { color: var(--white); }
+    @media (max-width: 900px) {
+      .sim-layout { grid-template-columns: 1fr; }
+      .sim-stats { grid-template-columns: 1fr 1fr; }
+      .sim-charts { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .sim-stats { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -834,6 +996,7 @@
     <div class="nav-links">
       <a href="#problem">Problème</a>
       <a href="#solution">Solution</a>
+      <a href="#simulateur">Simulateur</a>
       <a href="#roadmap">Feuille de route</a>
       <a href="#story">Histoire</a>
       <a href="#docs">Documents</a>
@@ -892,6 +1055,7 @@
   <span class="close-btn" id="closeMenu">✕</span>
   <a href="#problem" onclick="closeMobileMenu()">Problème</a>
   <a href="#solution" onclick="closeMobileMenu()">Solution</a>
+  <a href="#simulateur" onclick="closeMobileMenu()">Simulateur</a>
   <a href="#roadmap" onclick="closeMobileMenu()">Feuille de route</a>
   <a href="#story" onclick="closeMobileMenu()">Histoire</a>
   <a href="#docs" onclick="closeMobileMenu()">Documents</a>
@@ -1077,6 +1241,114 @@
   </div>
 </section>
 
+<!-- SIMULATOR -->
+<section class="simulator" id="simulateur">
+  <div class="container">
+    <p class="section-label reveal">Simulateur d'impact</p>
+    <h2 class="reveal reveal-delay-1">Ajustez les paramètres.<br>Voyez l'impact en temps réel.</h2>
+    <p class="sim-intro reveal reveal-delay-2">Basé sur la théorie de l'autodétermination (Deci &amp; Ryan), les effets Hattie sur l'apprentissage visible, et les données du Ministère de l'Éducation du Québec. Taux de décrochage de référence : 31,5 % (MEES).</p>
+
+    <div class="sim-layout reveal reveal-delay-2">
+
+      <!-- CONTROLS -->
+      <div class="sim-controls">
+        <h4>Paramètres du programme</h4>
+
+        <div class="sim-slider-group">
+          <div class="sim-slider-label">
+            Parcours simultanés par classe
+            <span id="val-paths">6</span>
+          </div>
+          <input type="range" id="sl-paths" min="1" max="8" value="6" oninput="updateSim()">
+        </div>
+
+        <div class="sim-slider-group">
+          <div class="sim-slider-label">
+            Engagement des enseignants
+            <span id="val-teacher">75%</span>
+          </div>
+          <input type="range" id="sl-teacher" min="0" max="100" value="75" oninput="updateSim()">
+        </div>
+
+        <div class="sim-slider-group">
+          <div class="sim-slider-label">
+            Fidélité au programme
+            <span id="val-fidelity">80%</span>
+          </div>
+          <input type="range" id="sl-fidelity" min="0" max="100" value="80" oninput="updateSim()">
+        </div>
+
+        <div class="sim-slider-group">
+          <div class="sim-slider-label">
+            Élèves par classe
+            <span id="val-students">24</span>
+          </div>
+          <input type="range" id="sl-students" min="15" max="32" value="24" oninput="updateSim()">
+        </div>
+
+        <div class="sim-toggle-row">
+          Studio disponible
+          <label class="sim-toggle">
+            <input type="checkbox" id="tog-studio" checked onchange="updateSim()">
+            <div class="sim-toggle-track"></div>
+          </label>
+        </div>
+
+        <div class="sim-toggle-row">
+          Programme de tablettes
+          <label class="sim-toggle">
+            <input type="checkbox" id="tog-tablet" checked onchange="updateSim()">
+            <div class="sim-toggle-track"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <div class="sim-right">
+
+        <!-- STAT CARDS -->
+        <div class="sim-stats">
+          <div class="sim-stat">
+            <div class="sim-stat-num" id="stat-eng">—</div>
+            <p>Engagement<br>an 1</p>
+          </div>
+          <div class="sim-stat">
+            <div class="sim-stat-num" id="stat-drop">—</div>
+            <p>Risque de<br>décrochage</p>
+          </div>
+          <div class="sim-stat">
+            <div class="sim-stat-num" id="stat-hattie">—</div>
+            <p>Effet Hattie<br>(d)</p>
+          </div>
+          <div class="sim-stat">
+            <div class="sim-stat-num" id="stat-roi">—</div>
+            <p>ROI estimé<br>10 ans</p>
+          </div>
+        </div>
+
+        <!-- CHARTS -->
+        <div class="sim-charts">
+          <div class="sim-chart-box">
+            <h5>Projection d'engagement (5 ans)</h5>
+            <canvas id="chart-engagement" height="200"></canvas>
+          </div>
+          <div class="sim-chart-box">
+            <h5>Décrochage : avant vs après</h5>
+            <canvas id="chart-dropout" height="200"></canvas>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="sim-cta">
+          <p><strong>Vous voulez explorer les scénarios complets ?</strong><br>Le simulateur avancé inclut 8 variables de risque, modélisation SDT complète et rapport PDF exportable.</p>
+          <a href="#" onclick="openModal();return false;" class="btn-primary" style="white-space:nowrap">Contacter Luca</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- STORY -->
 <section class="story" id="story">
   <div class="container">
@@ -1217,6 +1489,111 @@
   function openModal() { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
   function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; }
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+  /* ── SIMULATOR ── */
+  const BASE_ENG  = 0.52;   // baseline engagement (MEES Mtl-Nord est.)
+  const BASE_DROP = 0.315;  // baseline dropout risk 31.5% (MEES)
+
+  const chartEng = new Chart(document.getElementById('chart-engagement'), {
+    type: 'line',
+    data: {
+      labels: ['An 1','An 2','An 3','An 4','An 5'],
+      datasets: [
+        { label: 'Avec le programme', data: [], borderColor: '#00c9b1', backgroundColor: 'rgba(0,201,177,0.08)', tension: 0.4, fill: true, pointBackgroundColor: '#00c9b1' },
+        { label: 'Sans programme (référence)', data: [], borderColor: '#333', backgroundColor: 'transparent', tension: 0.4, borderDash: [5,4], pointBackgroundColor: '#333' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { labels: { color: '#888', font: { size: 11 } } } },
+      scales: {
+        x: { ticks: { color: '#555' }, grid: { color: '#111' } },
+        y: { min: 0, max: 1, ticks: { color: '#555', callback: v => Math.round(v*100)+'%' }, grid: { color: '#111' } }
+      }
+    }
+  });
+
+  const chartDrop = new Chart(document.getElementById('chart-dropout'), {
+    type: 'bar',
+    data: {
+      labels: ['Risque de décrochage'],
+      datasets: [
+        { label: 'Avant', data: [31.5], backgroundColor: '#ff6b6b99', borderColor: '#ff6b6b', borderWidth: 1, borderRadius: 6 },
+        { label: 'Après', data: [], backgroundColor: 'rgba(0,201,177,0.5)', borderColor: '#00c9b1', borderWidth: 1, borderRadius: 6 }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: true,
+      plugins: { legend: { labels: { color: '#888', font: { size: 11 } } } },
+      scales: {
+        x: { ticks: { color: '#555' }, grid: { color: '#111' } },
+        y: { min: 0, max: 40, ticks: { color: '#555', callback: v => v+'%' }, grid: { color: '#111' } }
+      }
+    }
+  });
+
+  function updateSim() {
+    const paths    = parseInt(document.getElementById('sl-paths').value);
+    const teacher  = parseInt(document.getElementById('sl-teacher').value) / 100;
+    const fidelity = parseInt(document.getElementById('sl-fidelity').value) / 100;
+    const students = parseInt(document.getElementById('sl-students').value);
+    const studio   = document.getElementById('tog-studio').checked;
+    const tablet   = document.getElementById('tog-tablet').checked;
+
+    // Update labels
+    document.getElementById('val-paths').textContent    = paths;
+    document.getElementById('val-teacher').textContent  = Math.round(teacher*100)+'%';
+    document.getElementById('val-fidelity').textContent = Math.round(fidelity*100)+'%';
+    document.getElementById('val-students').textContent = students;
+
+    // SDT Score (autonomy + competence + relatedness)
+    const autonomy   = (paths/8)*0.9;
+    const competence = teacher*0.6 + (paths/8)*0.4;
+    const relatedness= (studio ? 0.3 : 0) + teacher*0.4 + (tablet ? 0.2 : 0);
+    const sdtScore   = Math.max(0, Math.min(1, (autonomy*0.35 + competence*0.35 + relatedness*0.30) * fidelity));
+
+    // Engagement year 1
+    const engY1 = Math.min(0.97, BASE_ENG + sdtScore * 0.38);
+
+    // Hattie effect size d
+    const hattieD = ((engY1 - BASE_ENG) / 0.15).toFixed(2);
+
+    // Dropout risk after
+    const hattieEffect = 0.54 * fidelity;
+    const dropAfter = Math.max(2, BASE_DROP * (1 - hattieEffect) * (studio ? 0.85 : 1) * (tablet ? 0.92 : 1) * 100);
+
+    // ROI: students protected × $300k lifetime value / (10 × annual cost $35k)
+    const studentsProtected = Math.round(students * ((BASE_DROP - dropAfter/100) / BASE_DROP));
+    const roi = ((studentsProtected * 300000) / (10 * 35000)).toFixed(1);
+
+    // Update stat cards
+    document.getElementById('stat-eng').textContent   = Math.round(engY1*100)+'%';
+    document.getElementById('stat-drop').textContent  = dropAfter.toFixed(1)+'%';
+    document.getElementById('stat-hattie').textContent= 'd='+hattieD;
+    document.getElementById('stat-roi').textContent   = roi+'×';
+
+    // Color warning if dropout risk is still high
+    const dropEl = document.getElementById('stat-drop');
+    dropEl.classList.toggle('warn', dropAfter > 20);
+
+    // Engagement projection (5 years)
+    const withProg = [engY1];
+    const baseline = [BASE_ENG];
+    for (let i = 1; i < 5; i++) {
+      withProg.push(Math.min(0.97, withProg[i-1] + sdtScore * 0.04));
+      baseline.push(Math.max(0.25, baseline[i-1] - 0.025));
+    }
+    chartEng.data.datasets[0].data = withProg;
+    chartEng.data.datasets[1].data = baseline;
+    chartEng.update('none');
+
+    // Dropout bar
+    chartDrop.data.datasets[1].data = [dropAfter];
+    chartDrop.update('none');
+  }
+
+  // Init on load
+  updateSim();
 </script>
 
 </body>
