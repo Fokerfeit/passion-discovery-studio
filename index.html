@@ -1435,7 +1435,7 @@
           </div>
           <div class="sim-stat">
             <div class="sim-stat-num" id="stat-roi">—</div>
-            <p>ROI estimé<br>10 ans</p>
+            <p>RSI estimé<br>10 ans</p>
           </div>
         </div>
 
@@ -1680,7 +1680,7 @@
     const hattieEffect = 0.54 * fidelity;
     const dropAfter = Math.max(2, BASE_DROP * (1 - hattieEffect) * (studio ? 0.85 : 1) * (tablet ? 0.92 : 1) * 100);
 
-    // ROI: students protected × $300k lifetime value / (10 × annual cost $35k)
+    // RSI (Retour sur Investissement) : élèves protégés × 300k$ valeur vie / (10 × coût annuel 35k$)
     const studentsProtected = Math.round(students * ((BASE_DROP - dropAfter/100) / BASE_DROP));
     const roi = ((studentsProtected * 300000) / (10 * 35000)).toFixed(1);
 
