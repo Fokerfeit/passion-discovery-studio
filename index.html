@@ -636,6 +636,60 @@
     .cta-section p { color: var(--grey); max-width: 480px; margin: 0 auto 2.5rem; position: relative; font-size: 0.95rem; }
     .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
 
+    /* ── RÉFÉRENCES ──────────────────────────────────── */
+    .refs-section {
+      background: #050505;
+      border-top: 1px solid var(--border);
+      padding: 5rem 2rem;
+    }
+    .refs-section h2 { margin-bottom: 0.5rem; }
+    .refs-section .sim-intro { margin-bottom: 3rem; }
+    .refs-grid {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .ref-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+    }
+    .ref-tag {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      border: 1px solid rgba(0,201,177,0.3);
+      border-radius: 999px;
+      padding: 0.2rem 0.65rem;
+      margin-bottom: 0.75rem;
+    }
+    .ref-card h4 {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+      line-height: 1.4;
+    }
+    .ref-card p {
+      font-size: 0.75rem;
+      color: var(--grey);
+      line-height: 1.5;
+      margin-bottom: 0.6rem;
+    }
+    .ref-card a {
+      font-size: 0.72rem;
+      color: var(--teal);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .ref-card a:hover { text-decoration: underline; }
+
     /* ── FOOTER ───────────────────────────────────────── */
     footer {
       background: var(--dark);
@@ -1352,7 +1406,7 @@
   <div class="container">
     <p class="section-label reveal">Simulateur d'impact</p>
     <h2 class="reveal reveal-delay-1">Ajustez les paramètres.<br>Voyez l'impact en temps réel.</h2>
-    <p class="sim-intro reveal reveal-delay-2">Basé sur la théorie de l'autodétermination (Deci &amp; Ryan), les effets Hattie sur l'apprentissage visible, et les données du Ministère de l'Éducation du Québec. Taux de décrochage de référence : 31,5 % (MEES).</p>
+    <p class="sim-intro reveal reveal-delay-2">Basé sur la théorie de l'autodétermination (Deci &amp; Ryan), les effets Hattie sur l'apprentissage visible, et les données du Ministère de l'Éducation du Québec. Taux de sorties sans diplôme de référence : 14 % (moyenne provinciale, MEES 2024) — significativement plus élevé dans les milieux à indice de défavorisation élevé.</p>
 
     <div class="sim-layout reveal reveal-delay-2">
 
@@ -1550,6 +1604,75 @@
   </div>
 </section>
 
+<!-- RÉFÉRENCES SCIENTIFIQUES -->
+<section class="refs-section" id="references">
+  <div class="container">
+    <p class="section-label reveal">Fondements scientifiques</p>
+    <h2 class="reveal reveal-delay-1">Sources &amp; Références</h2>
+    <p class="sim-intro reveal reveal-delay-2">Toutes les hypothèses du simulateur et les affirmations du projet sont fondées sur des sources vérifiables et des données officielles.</p>
+
+    <div class="refs-grid">
+
+      <div class="ref-card reveal">
+        <span class="ref-tag">Théorie</span>
+        <h4>Théorie de l'autodétermination (TAD)</h4>
+        <p>Deci, E.L. &amp; Ryan, R.M. (2000). Les besoins fondamentaux d'autonomie, de compétence et d'appartenance comme moteurs de la motivation intrinsèque. Base du calcul SDT du simulateur.</p>
+        <a href="https://selfdeterminationtheory.org" target="_blank">selfdeterminationtheory.org</a>
+      </div>
+
+      <div class="ref-card reveal reveal-delay-1">
+        <span class="ref-tag">Méta-analyse</span>
+        <h4>Visible Learning — Hattie (2009)</h4>
+        <p>Hattie, J. (2009). Synthèse de plus de 800 méta-analyses sur la réussite scolaire. L'effet d passé 0,40 est considéré significatif. Utilisé pour calibrer l'indice d'efficacité du simulateur.</p>
+        <a href="https://visible-learning.org" target="_blank">visible-learning.org</a>
+      </div>
+
+      <div class="ref-card reveal reveal-delay-2">
+        <span class="ref-tag">Statistiques officielles</span>
+        <h4>Taux de sorties sans diplôme — MEES 2024</h4>
+        <p>Ministère de l'Éducation du Québec (2024). Taux provincial : 14 % — en baisse de 22 % depuis 1999. Significativement plus élevé dans les milieux à indice de défavorisation IMSE 9–10.</p>
+        <a href="https://statistique.quebec.ca/vitrine/15-29-ans/theme/education/sorties-sans-diplome-ni-qualification-au-secondaire" target="_blank">statistique.quebec.ca</a>
+      </div>
+
+      <div class="ref-card reveal reveal-delay-1">
+        <span class="ref-tag">Défavorisation</span>
+        <h4>Indices de milieu socioéconomique (IMSE)</h4>
+        <p>Ministère de l'Éducation du Québec. Classement des écoles publiques de 1 (favorisé) à 10 (très défavorisé). Le programme cible les écoles IMSE 8–10 du Grand Montréal.</p>
+        <a href="https://www.quebec.ca/education/indicateurs-statistiques/prescolaire-primaire-secondaire/indices-defavorisation" target="_blank">quebec.ca — Indices de défavorisation</a>
+      </div>
+
+      <div class="ref-card reveal reveal-delay-2">
+        <span class="ref-tag">Impact économique</span>
+        <h4>Coût du décrochage — 14 G$/an au Québec</h4>
+        <p>Laurin, F. (cité dans CDÉACF, 2024). Perte de revenus à vie par décrocheur : 560 000 $ à 1,4 M$ selon la région. Le simulateur utilise 300 000 $ comme estimation prudente et conservative.</p>
+        <a href="https://cdeacf.ca/actualite/2024/01/22/decrochage-scolaire-couterait-14-milliards-annee-quebec" target="_blank">cdeacf.ca — 14 milliards $ / an</a>
+      </div>
+
+      <div class="ref-card reveal reveal-delay-3">
+        <span class="ref-tag">Analyse économique</span>
+        <h4>Décrochage scolaire au Québec — CIRANO (2021)</h4>
+        <p>Lacroix, G. et al. (2021). Simulations de politiques éducatives et impact sur le taux de décrochage provincial. Institut de recherche économique affilié à l'Université de Montréal.</p>
+        <a href="https://cirano.qc.ca/files/uploads/files/2021RP-20.pdf" target="_blank">cirano.qc.ca — Rapport complet (PDF)</a>
+      </div>
+
+      <div class="ref-card reveal reveal-delay-1">
+        <span class="ref-tag">Revenu R3USSIR</span>
+        <h4>Impact régional du décrochage en Estrie (2024)</h4>
+        <p>R3USSIR Estrie (2024). Coût économique annuel : 1,54 G$ pour la région. Perte de revenus à vie : 560 668 $ par décrocheur. Écart salarial : 11 546 $–25 347 $/an vs diplômé.</p>
+        <a href="https://reussirestrie.ca/en/nouvelles/nouvelles-donnees-sur-les-couts-et-impacts-du-decrochage-scolaire-sur-le-developpement-economique-en-estrie/" target="_blank">reussirestrie.ca — Rapport 2024</a>
+      </div>
+
+      <div class="ref-card reveal reveal-delay-2">
+        <span class="ref-tag">Institut du Québec</span>
+        <h4>Dix ans de surplace — décrochage au Québec (2021)</h4>
+        <p>Institut du Québec (2021). Analyse longitudinale du décrochage scolaire provincial. Facteurs de risque, disparités régionales et leviers d'intervention les plus efficaces.</p>
+        <a href="https://institutduquebec.ca/wp-content/uploads/2021/02/201804-IDQ-Decrochage-scolaire-au-Quebec_IDQ_BR-002.pdf" target="_blank">institutduquebec.ca — Rapport (PDF)</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1611,7 +1734,7 @@
 
   /* ── SIMULATOR ── */
   const BASE_ENG  = 0.52;   // baseline engagement (MEES Mtl-Nord est.)
-  const BASE_DROP = 0.315;  // baseline dropout risk 31.5% (MEES)
+  const BASE_DROP = 0.14;   // baseline dropout risk 14% provincial (MEES 2024)
 
   const chartEng = new Chart(document.getElementById('chart-engagement'), {
     type: 'line',
@@ -1637,7 +1760,7 @@
     data: {
       labels: ['Risque de décrochage'],
       datasets: [
-        { label: 'Avant', data: [31.5], backgroundColor: '#ff6b6b99', borderColor: '#ff6b6b', borderWidth: 1, borderRadius: 6 },
+        { label: 'Avant', data: [14], backgroundColor: '#ff6b6b99', borderColor: '#ff6b6b', borderWidth: 1, borderRadius: 6 },
         { label: 'Après', data: [], backgroundColor: 'rgba(0,201,177,0.5)', borderColor: '#00c9b1', borderWidth: 1, borderRadius: 6 }
       ]
     },

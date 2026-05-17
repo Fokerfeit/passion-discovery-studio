@@ -591,6 +591,56 @@
 
     </div><!-- /results -->
   </div><!-- /sim-page -->
+
+  <!-- RÉFÉRENCES -->
+  <div style="max-width:960px; margin:2.5rem auto 0; padding:0 1.5rem 3rem;">
+    <div style="border-top:1px solid #1a1a1a; padding-top:2rem;">
+      <p style="font-size:0.6rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#444;margin-bottom:1.25rem;">Sources &amp; Références scientifiques</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.85rem;">
+
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-radius:8px;padding:1rem;">
+          <p style="font-size:0.62rem;color:#00c9b1;font-weight:700;margin-bottom:0.35rem;">THÉORIE — SDT</p>
+          <p style="font-size:0.72rem;color:#ccc;line-height:1.5;">Deci, E.L. &amp; Ryan, R.M. (2000). Autonomie × 0,35 + Compétence × 0,35 + Appartenance × 0,30. Base du score SDT composite.</p>
+          <a href="https://selfdeterminationtheory.org" style="font-size:0.68rem;color:#00c9b1;text-decoration:none;" target="_blank">selfdeterminationtheory.org</a>
+        </div>
+
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-radius:8px;padding:1rem;">
+          <p style="font-size:0.62rem;color:#00c9b1;font-weight:700;margin-bottom:0.35rem;">MÉTA-ANALYSE — HATTIE</p>
+          <p style="font-size:0.72rem;color:#ccc;line-height:1.5;">Hattie, J. (2009). Visible Learning. Routledge. Seuil significatif : d ≥ 0,40. L'effet d est calculé à partir de l'écart d'engagement normalisé par 0,15.</p>
+          <a href="https://visible-learning.org" style="font-size:0.68rem;color:#00c9b1;text-decoration:none;" target="_blank">visible-learning.org</a>
+        </div>
+
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-radius:8px;padding:1rem;">
+          <p style="font-size:0.62rem;color:#00c9b1;font-weight:700;margin-bottom:0.35rem;">STATISTIQUES — MEES 2024</p>
+          <p style="font-size:0.72rem;color:#ccc;line-height:1.5;">Ministère de l'Éducation du Québec (2024). Taux de sorties sans diplôme : 14 % provincial. Référence de base pour le calcul de décrochage simulé.</p>
+          <a href="https://statistique.quebec.ca/vitrine/15-29-ans/theme/education/sorties-sans-diplome-ni-qualification-au-secondaire" style="font-size:0.68rem;color:#00c9b1;text-decoration:none;" target="_blank">statistique.quebec.ca</a>
+        </div>
+
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-radius:8px;padding:1rem;">
+          <p style="font-size:0.62rem;color:#00c9b1;font-weight:700;margin-bottom:0.35rem;">IMPACT ÉCONOMIQUE</p>
+          <p style="font-size:0.72rem;color:#ccc;line-height:1.5;">Laurin, F. / CDÉACF (2024). Perte de revenus à vie : 560 000 $–1,4 M$ par décrocheur. Coût provincial : 14 G$/an. RSI calculé à 300 000 $ (estimation prudente).</p>
+          <a href="https://cdeacf.ca/actualite/2024/01/22/decrochage-scolaire-couterait-14-milliards-annee-quebec" style="font-size:0.68rem;color:#00c9b1;text-decoration:none;" target="_blank">cdeacf.ca — 14 G$/an</a>
+        </div>
+
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-radius:8px;padding:1rem;">
+          <p style="font-size:0.62rem;color:#00c9b1;font-weight:700;margin-bottom:0.35rem;">ANALYSE RÉGIONALE</p>
+          <p style="font-size:0.72rem;color:#ccc;line-height:1.5;">R3USSIR Estrie (2024). Coût régional : 1,54 G$/an. Écart salarial annuel : 11 546 $–25 347 $ entre diplômé et décrocheur. Taux d'emploi : 85 % vs 94 %.</p>
+          <a href="https://reussirestrie.ca/en/nouvelles/nouvelles-donnees-sur-les-couts-et-impacts-du-decrochage-scolaire-sur-le-developpement-economique-en-estrie/" style="font-size:0.68rem;color:#00c9b1;text-decoration:none;" target="_blank">reussirestrie.ca — Rapport 2024</a>
+        </div>
+
+        <div style="background:#0a0a0a;border:1px solid #1a1a1a;border-radius:8px;padding:1rem;">
+          <p style="font-size:0.62rem;color:#00c9b1;font-weight:700;margin-bottom:0.35rem;">CIRANO — RECHERCHE</p>
+          <p style="font-size:0.72rem;color:#ccc;line-height:1.5;">Lacroix, G. et al. (2021). Décrochage scolaire au Québec : résultats et simulations de politiques. Institut affilié à l'Université de Montréal.</p>
+          <a href="https://cirano.qc.ca/files/uploads/files/2021RP-20.pdf" style="font-size:0.68rem;color:#00c9b1;text-decoration:none;" target="_blank">cirano.qc.ca — Rapport PDF</a>
+        </div>
+
+      </div>
+      <p style="font-size:0.62rem;color:#333;margin-top:1.25rem;line-height:1.6;">
+        Note méthodologique : les projections du simulateur sont des estimations basées sur des modèles théoriques et des données agrégées. Elles ne remplacent pas une évaluation empirique sur le terrain. Les coefficients SDT, les effets Hattie et les calculs RSI sont calibrés de manière prudente et conservative.
+      </p>
+    </div>
+  </div>
+
 </div><!-- /app -->
 
 <script>
@@ -627,7 +677,7 @@ if (sessionStorage.getItem('sim-auth') === '1') {
    CONSTANTS
 ═══════════════════════════════════════════════════ */
 const BASE_ENG  = 0.52;
-const BASE_DROP = 0.315;
+const BASE_DROP = 0.14;   // baseline dropout risk 14% provincial (MEES 2024)
 let charts = {};
 let scenarios = [];
 
