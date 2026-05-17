@@ -816,6 +816,21 @@
       .doc-grid { grid-template-columns: 1fr 1fr; }
     }
 
+    /* ── INFOGRAPHIE ─────────────────────────────────── */
+    .infographie-wrap {
+      margin-top: 2.5rem;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .infographie-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .infographie-wrap img:hover { transform: scale(1.01); }
+
     /* ── SIMULATOR ────────────────────────────────────── */
     .simulator { background: var(--black); }
     .sim-intro { color: var(--grey); font-size: 0.95rem; max-width: 620px; margin-bottom: 2.5rem; }
@@ -1192,10 +1207,8 @@
         </div>
       </div>
     </div>
-    <div class="photo-grid reveal reveal-delay-3">
-      <img src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?auto=format&fit=crop&w=600&q=80" alt="Enfant au microscope" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80" alt="Construction manuelle" loading="lazy" />
-      <img src="https://images.unsplash.com/photo-1555009393-f20bdb245c4d?auto=format&fit=crop&w=600&q=80" alt="Apprentissage en plein air" loading="lazy" />
+    <div class="infographie-wrap reveal reveal-delay-3">
+      <img src="infographie-fr.png" alt="Infographie — Les 5 composantes du programme" loading="lazy" />
     </div>
   </div>
 </section>
@@ -1392,6 +1405,11 @@
         <h4>Qu'est-ce que GitHub ?</h4>
         <p>GitHub est une plateforme publique et gratuite utilisée par des organisations du monde entier pour partager des documents et du code de façon transparente. Pensez-y comme à un Google Drive ouvert à tous. Les liens ci-dessous permettent à n'importe qui — commissions scolaires, Ministère, bailleurs de fonds, parents — de télécharger les documents directement. Aucun compte requis.</p>
       </div>
+    </div>
+
+    <div class="infographie-wrap reveal reveal-delay-2" style="margin-bottom:2rem;">
+      <p style="font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#444;margin-bottom:0.75rem;">Version anglaise — For English-speaking partners</p>
+      <img src="infographie-en.png" alt="Infographic — Program overview (English)" loading="lazy" />
     </div>
 
     <div class="doc-grid">
