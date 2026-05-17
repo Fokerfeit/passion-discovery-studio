@@ -95,7 +95,7 @@
       flex-shrink: 0;
       background: #000;
     }
-    .nav-logo span { color: var(--teal); }
+    .nav-logo .logo-accent { color: var(--teal); }
     .nav-links {
       display: flex;
       align-items: center;
@@ -796,8 +796,34 @@
 
     /* ── RESPONSIVE ───────────────────────────────────── */
     @media (max-width: 768px) {
+      /* NAV — smaller logo, hide text, bigger hamburger */
       .nav-links { display: none; }
-      .hamburger { display: flex; }
+      .hamburger {
+        display: flex;
+        padding: 10px 8px;
+        gap: 6px;
+        background: rgba(0,201,177,0.08);
+        border-radius: 8px;
+        border: 1px solid rgba(0,201,177,0.25);
+      }
+      .hamburger span {
+        width: 26px;
+        height: 3px;
+        background: var(--teal);
+        border-radius: 3px;
+      }
+      .nav-logo img {
+        width: 40px;
+        height: 40px;
+      }
+      .nav-logo .logo-name {
+        display: none;
+      }
+      nav {
+        padding: 0.5rem 1rem;
+      }
+
+      /* LAYOUT */
       .problem-intro { grid-template-columns: 1fr; gap: 2rem; }
       .stat-grid { grid-template-columns: 1fr 1fr; }
       .photo-grid { grid-template-columns: 1fr 1fr; }
@@ -808,6 +834,34 @@
       .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .contact-bar { justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+      /* SIMULATOR — bridge + results label */
+      .sim-bridge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+        color: var(--teal);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+      .sim-bridge-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--teal), transparent);
+        opacity: 0.4;
+      }
+      .sim-results-label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.25rem;
+        padding: 0 0.25rem;
+      }
     }
     @media (max-width: 480px) {
       section { padding: 4rem 1.25rem; }
@@ -832,6 +886,14 @@
       transition: transform 0.4s ease;
     }
     .infographie-wrap img:hover { transform: scale(1.01); }
+
+    /* ── SIMULATOR BRIDGE (mobile only, hidden on desktop) ── */
+    .sim-bridge {
+      display: none;
+    }
+    .sim-results-label {
+      display: none;
+    }
 
     /* ── SIMULATOR ────────────────────────────────────── */
     .simulator { background: var(--black); }
@@ -989,6 +1051,33 @@
       .sim-layout { grid-template-columns: 1fr; }
       .sim-stats { grid-template-columns: 1fr 1fr; }
       .sim-charts { grid-template-columns: 1fr; }
+      /* Show bridge and results label on tablet/mobile */
+      .sim-bridge {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+        color: var(--teal);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+      .sim-bridge-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--teal), transparent);
+        opacity: 0.4;
+      }
+      .sim-results-label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 0.25rem;
+        padding: 0 0.25rem;
+      }
     }
     @media (max-width: 480px) {
       .sim-stats { grid-template-columns: 1fr 1fr; }
@@ -1009,7 +1098,7 @@
 <!-- NAV -->
 <div class="nav-wrap">
   <nav>
-    <div class="nav-logo"><img src="logo.png" alt="Logo" />Studio de Découverte <span>des Passions</span></div>
+    <div class="nav-logo"><img src="logo.png" alt="Logo" /><span class="logo-name">Studio de Découverte <span class="logo-accent">des Passions</span></span></div>
     <div class="nav-links">
       <a href="#problem">Problème</a>
       <a href="#solution">Solution</a>
@@ -1318,8 +1407,16 @@
         </div>
       </div>
 
+      <!-- MOBILE BRIDGE -->
+      <div class="sim-bridge">
+        <div class="sim-bridge-line"></div>
+        <span>↓ Résultats en temps réel</span>
+        <div class="sim-bridge-line"></div>
+      </div>
+
       <!-- RIGHT PANEL -->
       <div class="sim-right">
+        <h4 class="sim-results-label">📊 Résultats simulés</h4>
 
         <!-- STAT CARDS -->
         <div class="sim-stats">
